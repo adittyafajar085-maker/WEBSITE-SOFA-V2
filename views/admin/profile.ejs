@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || 'Profil Toko' %></title>
+    <style>
+      body{margin:0;font-family:Arial,sans-serif;background:#f4f0ec;color:#2a241f}.layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh} aside{background:#2e211b;color:#fff;padding:24px} aside a{display:block;color:#fff;text-decoration:none;margin-bottom:12px} main{padding:30px}.card{background:#fff;padding:24px;border-radius:16px;box-shadow:0 8px 18px rgba(0,0,0,.06)} form{display:grid;gap:16px}.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px} input,textarea,button{font:inherit} input,textarea{padding:10px 12px;border:1px solid #ddd;border-radius:10px;width:100%;box-sizing:border-box} textarea{min-height:110px;resize:vertical}.btn{padding:12px 18px;border:none;border-radius:10px;background:#7a4f2a;color:#fff;font-weight:700;cursor:pointer}.secondary{background:#eee;color:#2a241f}
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside>
+        <h2>Admin</h2>
+        <a href="/admin">Dashboard</a>
+        <a href="/admin/products">Produk</a>
+        <a href="/admin/posts">Postingan</a>
+        <a href="/admin/profile">Profil</a>
+        <a href="/logout">Logout</a>
+      </aside>
+      <main>
+        <div class="card">
+          <h1>Kelola Profil Toko</h1>
+          <form method="POST" action="/admin/profile" enctype="multipart/form-data">
+            <div class="row">
+              <div>
+                <label>Nama Toko</label>
+                <input name="name" value="<%= profile.name || '' %>" required />
+              </div>
+              <div>
+                <label>Tagline</label>
+                <input name="tagline" value="<%= profile.tagline || '' %>" />
+              </div>
+            </div>
+
+            <div>
+              <label>Deskripsi</label>
+              <textarea name="description"><%= profile.description || '' %></textarea>
+            </div>
+
+            <div class="row">
+              <div>
+                <label>Phone</label>
+                <input name="phone" value="<%= profile.phone || '' %>" />
+              </div>
+              <div>
+                <label>WhatsApp</label>
+                <input name="whatsapp" value="<%= profile.whatsapp || '' %>" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label>Email</label>
+                <input name="email" value="<%= profile.email || '' %>" />
+              </div>
+              <div>
+                <label>Alamat</label>
+                <input name="address" value="<%= profile.address || '' %>" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label>Jam Operasional (Weekdays)</label>
+                <input name="operationalWeekdays" value="<%= (profile.operationalHours && profile.operationalHours.weekdays) || '' %>" />
+              </div>
+              <div>
+                <label>Jam Operasional (Minggu)</label>
+                <input name="operationalSunday" value="<%= (profile.operationalHours && profile.operationalHours.sunday) || '' %>" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label>Banner Foto (JPG/PNG)</label>
+                <input name="bannerImage" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" />
+              </div>
+              <div>
+                <label>Gambar Alur Pesan (JPG/PNG)</label>
+                <input name="orderFlowImage" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label>Judul Hero</label>
+                <input name="heroTitle" value="<%= (profile.hero && profile.hero.title) || '' %>" />
+              </div>
+              <div>
+                <label>Subtitle Hero</label>
+                <input name="heroSubtitle" value="<%= (profile.hero && profile.hero.subtitle) || '' %>" />
+              </div>
+            </div>
+
+            <div class="row">
+              <button class="btn" type="submit">Simpan Profil</button>
+              <a class="btn secondary" href="/admin" style="display:inline-block;text-align:center;">Batal</a>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || 'Dashboard Admin' %></title>
+    <style>
+      body { margin: 0; font-family: Arial, sans-serif; background: #f4f0ec; color: #2a241f; }
+      .layout { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+      aside { background: #2e211b; color: white; padding: 24px; }
+      aside a { display: block; color: white; margin-bottom: 12px; text-decoration: none; }
+      main { padding: 30px; }
+      .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 18px; }
+      .card { background: white; border-radius: 14px; padding: 20px; box-shadow: 0 8px 18px rgba(0,0,0,0.06); }
+      .alert { background: #edf8ee; color: #24663b; border: 1px solid #bfe1c8; padding: 12px; border-radius: 10px; margin-bottom: 18px; }
+      .alert.error { background: #fff1f1; color: #a12d2d; border-color: #f0c1c1; }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside>
+        <h2>Admin</h2>
+        <a href="/admin">Dashboard</a>
+        <a href="/admin/products">Produk</a>
+        <a href="/admin/posts">Postingan</a>
+        <a href="/admin/profile">Profil</a>
+        <a href="/logout">Logout</a>
+      </aside>
+      <main>
+        <% if (success) { %><div class="alert"><%= success %></div><% } %>
+        <% if (error) { %><div class="alert error"><%= error %></div><% } %>
+        <h1>Dashboard Admin</h1>
+        <div class="cards">
+          <div class="card"><h3>Produk</h3><p><%= productsCount || 0 %></p></div>
+          <div class="card"><h3>Postingan</h3><p><%= postsCount || 0 %></p></div>
+          <div class="card"><h3>Kategori</h3><p><%= categoriesCount || 0 %></p></div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

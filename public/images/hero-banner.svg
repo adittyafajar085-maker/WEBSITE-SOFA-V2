@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c110a" />
+      <stop offset="50%" stop-color="#3d2112" />
+      <stop offset="100%" stop-color="#140b07" />
+    </linearGradient>
+    <radialGradient id="light" cx="70%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#b45309" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="sofaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#92400e" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <rect width="1600" height="900" fill="url(#light)" />
+
+  <!-- Abstract Luxury Furniture Silhouette in Banner -->
+  <g transform="translate(900, 300)" opacity="0.3">
+    <!-- Backrest -->
+    <rect x="0" y="100" width="550" height="220" rx="30" fill="#ffffff" />
+    <!-- Cushions -->
+    <rect x="20" y="240" width="240" height="120" rx="20" fill="#f59e0b" />
+    <rect x="280" y="240" width="240" height="120" rx="20" fill="#f59e0b" />
+    <!-- Armrests -->
+    <rect x="-40" y="160" width="60" height="200" rx="20" fill="#ffffff" />
+    <rect x="520" y="160" width="60" height="200" rx="20" fill="#ffffff" />
+    <!-- Wooden Table -->
+    <rect x="150" y="420" width="300" height="30" rx="6" fill="#d97706" />
+    <line x1="180" y1="450" x2="160" y2="520" stroke="#d97706" stroke-width="12" stroke-linecap="round" />
+    <line x1="420" y1="450" x2="440" y2="520" stroke="#d97706" stroke-width="12" stroke-linecap="round" />
+  </g>
+
+  <!-- Ambient Glow & Accents -->
+  <circle cx="1300" cy="200" r="180" fill="#d97706" opacity="0.15" filter="blur(50px)" />
+</svg>
+

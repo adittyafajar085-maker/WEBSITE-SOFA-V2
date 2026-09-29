@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || 'Postingan' %></title>
+    <style>
+      body{margin:0;font-family:Arial,sans-serif;background:#f6f1ec;color:#2d241f}.container{max-width:1100px;margin:0 auto;padding:28px 20px 60px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}.card{background:#fff;padding:20px;border-radius:16px;box-shadow:0 8px 18px rgba(0,0,0,.06)} a{text-decoration:none;color:inherit}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Postingan & Artikel</h1>
+      <div class="grid">
+        <% if (posts && posts.length) { %>
+          <% posts.forEach((post) => { %>
+            <article class="card">
+              <h3><a href="/postingan/<%= post.slug %>"><%= post.title %></a></h3>
+              <p><%= post.excerpt || 'Informasi menarik seputar mebel dan rumah.' %></p>
+              <a href="/postingan/<%= post.slug %>">Baca Selengkapnya</a>
+            </article>
+          <% }); %>
+        <% } else { %>
+          <p>Belum ada postingan.</p>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

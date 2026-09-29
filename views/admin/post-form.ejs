@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || 'Form Postingan' %></title>
+    <style>
+      body{margin:0;font-family:Arial,sans-serif;background:#f4f0ec;color:#2a241f}.layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh} aside{background:#2e211b;color:#fff;padding:24px} aside a{display:block;color:#fff;text-decoration:none;margin-bottom:12px} main{padding:30px}.card{background:#fff;padding:24px;border-radius:16px;box-shadow:0 8px 18px rgba(0,0,0,.06)} form{display:grid;gap:16px} input,textarea,button{font:inherit} input,textarea{padding:10px 12px;border:1px solid #ddd;border-radius:10px;width:100%;box-sizing:border-box} textarea{min-height:120px;resize:vertical}.btn{padding:12px 18px;border:none;border-radius:10px;background:#7a4f2a;color:#fff;font-weight:700;cursor:pointer}.secondary{background:#eee;color:#2a241f}.img-preview{max-width:220px;max-height:220px;border-radius:12px;object-fit:cover;border:1px solid #ddd;margin-top:8px}
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside>
+        <h2>Admin</h2>
+        <a href="/admin">Dashboard</a>
+        <a href="/admin/products">Produk</a>
+        <a href="/admin/posts">Postingan</a>
+        <a href="/admin/profile">Profil</a>
+        <a href="/logout">Logout</a>
+      </aside>
+      <main>
+        <div class="card">
+          <h1><%= isEdit ? 'Edit Postingan' : 'Tambah Postingan Baru' %></h1>
+          <form method="POST" action="<%= isEdit ? '/admin/posts/edit/' + post.id : '/admin/posts/new' %>" enctype="multipart/form-data">
+            <div>
+              <label>Judul</label>
+              <input name="title" value="<%= post ? post.title || '' : '' %>" required />
+            </div>
+            <div>
+              <label>Ringkasan</label>
+              <textarea name="excerpt"><%= post ? post.excerpt || '' : '' %></textarea>
+            </div>
+            <div>
+              <label>Konten</label>
+              <textarea name="content" required><%= post ? post.content || '' : '' %></textarea>
+            </div>
+            <div>
+              <label>Penulis</label>
+              <input name="author" value="<%= post ? post.author || '' : '' %>" />
+            </div>
+            <div>
+              <label>Foto Postingan (JPG/PNG)</label>
+              <input name="image" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" />
+              <% if (post && post.image) { %>
+                <img class="img-preview" src="<%= post.image %>" alt="Preview postingan" />
+              <% } %>
+            </div>
+            <div style="display:flex;gap:12px;">
+              <button class="btn" type="submit"><%= isEdit ? 'Perbarui Postingan' : 'Simpan Postingan' %></button>
+              <a class="btn secondary" href="/admin/posts" style="display:inline-block;text-align:center;">Batal</a>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

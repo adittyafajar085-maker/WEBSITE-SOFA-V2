@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || 'Halaman Tidak Ditemukan' %></title>
+    <style>
+      body { margin: 0; font-family: Arial, sans-serif; background: #f6f2ee; color: #372a22; display: grid; place-items: center; min-height: 100vh; }
+      .box { text-align: center; padding: 40px 30px; }
+      h1 { color: #a42c2c; font-size: 3rem; margin-bottom: 12px; }
+      p { font-size: 1.1rem; }
+      a.button { display: inline-block; background: #8a5a2d; color: white; padding: 12px 24px; border-radius: 12px; margin-top: 20px; font-weight: 700; }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h1>404</h1>
+      <p><%= message || 'Halaman yang Anda cari tidak ditemukan.' %></p>
+      <a class="button" href="/">Kembali ke Beranda</a>
+    </div>
+  </body>
+</html>

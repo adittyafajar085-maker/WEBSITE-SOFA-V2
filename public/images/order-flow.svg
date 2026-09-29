@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#faf7f2" />
+      <stop offset="100%" stop-color="#f5ede0" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#fdfbf8" />
+    </linearGradient>
+    <linearGradient id="woodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#78350f" />
+      <stop offset="100%" stop-color="#92400e" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-opacity="0.08" flood-color="#78350f" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="500" rx="24" fill="url(#bgGrad)" stroke="#e8dfd3" stroke-width="2" />
+
+  <!-- Header Text -->
+  <text x="600" y="55" font-family="'Outfit', 'Plus Jakarta Sans', sans-serif" font-size="26" font-weight="800" fill="#2c1a11" text-anchor="middle">
+    ALUR PEMESANAN MEUBEL &amp; CUSTOM ORDER
+  </text>
+  <text x="600" y="85" font-family="'Plus Jakarta Sans', sans-serif" font-size="15" fill="#78350f" text-anchor="middle" font-weight="600">
+    Meubel Adittya Putra Lamongan • Proses Mudah, Transparan, &amp; Terpercaya Sejak 2005
+  </text>
+
+  <!-- Connecting Line -->
+  <line x1="160" y1="230" x2="1040" y2="230" stroke="#d97706" stroke-width="4" stroke-dasharray="8 8" opacity="0.6" />
+
+  <!-- Step 1 -->
+  <g transform="translate(60, 130)" filter="url(#shadow)">
+    <rect width="200" height="280" rx="16" fill="url(#cardGrad)" stroke="#eeddc8" stroke-width="1.5" />
+    <circle cx="100" cy="40" r="30" fill="url(#woodGrad)" />
+    <text x="100" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">1</text>
+    <text x="100" y="105" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700" fill="#2c1a11" text-anchor="middle">Pilih / Kirim Ide</text>
+    <text x="100" y="145" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#555" text-anchor="middle">Pilih dari katalog</text>
+    <text x="100" y="165" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#555" text-anchor="middle">atau kirim foto model</text>
+    <text x="100" y="185" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#555" text-anchor="middle">&amp; ukuran ruangan</text>
+    <rect x="25" y="225" width="150" height="32" rx="8" fill="#fef3c7" />
+    <text x="100" y="246" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="#92400e" text-anchor="middle">Via WhatsApp</text>
+  </g>
+
+  <!-- Step 2 -->
+  <g transform="translate(285, 130)" filter="url(#shadow)">
+    <rect width="200" height="280" rx="16" fill="url(#cardGrad)" stroke="#eeddc8" stroke-width="1.5" />
+    <circle cx="100" cy="40" r="30" fill="url(#woodGrad)" />
+    <text x="100" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">2</text>
+    <text x="100" y="105" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700" fill="#2c1a11" text-anchor="middle">Konsultasi Detail</text>
+    <text x="100" y="145" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#555" text-anchor="middle">Penentuan jenis kayu</text>
+    <text x="100" y="165" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#555" text-anchor="middle">warna finishing plitur,</text>
+    <text x="100" y="185" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#555" text-anchor="middle">kain &amp; busa sofa</text>
+    <rect x="25" y="225" width="150" height="32" rx="8" fill="#fef3c7" />
+    <text x="100" y="246" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="#92400e" text-anchor="middle">Estimasi Biaya</text>
+  </g>
+
+  <!-- Step 3 -->
+  <g transform="translate(510, 130)" filter="url(#shadow)">
+    <rect width="200" height="280" rx="16" fill="url(#cardGrad)" stroke="#eeddc8" stroke-width="1.5" />
+    <circle cx="100" cy="40" r="30" fill="url(#woodGrad)" />
+    <text x="100" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">3</text>
+    <text x="100" y="105" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700" fill="#2c1a11" text-anchor="middle">DP &amp; Produksi</text>
+    <text x="100" y="145" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#555" text-anchor="middle">Konfirmasi uang muka,</text>
+    <text x="100" y="165" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#555" text-anchor="middle">dikerjakan pengrajin</text>
+    <text x="100" y="185" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#555" text-anchor="middle">berpengalaman &gt; 10 th</text>
+    <rect x="25" y="225" width="150" height="32" rx="8" fill="#fef3c7" />
+    <text x="100" y="246" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="#92400e" text-anchor="middle">Kayu Anti Totor</text>
+  </g>
+
+  <!-- Step 4 -->
+  <g transform="translate(735, 130)" filter="url(#shadow)">
+    <rect width="200" height="280" rx="16" fill="url(#cardGrad)" stroke="#eeddc8" stroke-width="1.5" />
+    <circle cx="100" cy="40" r="30" fill="url(#woodGrad)" />
+    <text x="100" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">4</text>
+    <text x="100" y="105" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700" fill="#2c1a11" text-anchor="middle">Quality Control</text>
+    <text x="100" y="145" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#555" text-anchor="middle">Pemeriksaan kerapian,</text>
+    <text x="100" y="165" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#555" text-anchor="middle">kekuatan konstruksi,</text>
+    <text x="100" y="185" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#555" text-anchor="middle">&amp; foto hasil ke Anda</text>
+    <rect x="25" y="225" width="150" height="32" rx="8" fill="#fef3c7" />
+    <text x="100" y="246" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="#92400e" text-anchor="middle">Lolos Uji Kualitas</text>
+  </g>
+
+  <!-- Step 5 -->
+  <g transform="translate(960, 130)" filter="url(#shadow)">
+    <rect width="180" height="280" rx="16" fill="url(#cardGrad)" stroke="#eeddc8" stroke-width="1.5" />
+    <circle cx="90" cy="40" r="30" fill="#15803d" />
+    <text x="90" y="48" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">5</text>
+    <text x="90" y="105" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700" fill="#2c1a11" text-anchor="middle">Kirim &amp; Selesai</text>
+    <text x="90" y="145" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#555" text-anchor="middle">Pengiriman aman</text>
+    <text x="90" y="165" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#555" text-anchor="middle">langsung ke alamat Anda</text>
+    <text x="90" y="185" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" fill="#555" text-anchor="middle">dan pelunasan</text>
+    <rect x="15" y="225" width="150" height="32" rx="8" fill="#dcfce7" />
+    <text x="90" y="246" font-family="'Plus Jakarta Sans', sans-serif" font-size="11" font-weight="700" fill="#15803d" text-anchor="middle">Garansi Kepuasan</text>
+  </g>
+</svg>
+

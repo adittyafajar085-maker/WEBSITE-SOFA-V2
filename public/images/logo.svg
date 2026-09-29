@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 120" width="100%" height="100%">
+  <defs>
+    <linearGradient id="woodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#78350f" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d97706" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+  <!-- Icon Logo: Elegant Chair & Wood Grain -->
+  <g transform="translate(15, 15)">
+    <rect x="0" y="0" width="90" height="90" rx="20" fill="url(#woodGrad)" />
+    <!-- Sofa / Chair Silhouette -->
+    <path d="M22 62 L68 62 C70 62 72 60 72 58 L72 45 C72 41 69 38 65 38 L65 28 C65 24 62 22 58 22 L32 22 C28 22 25 24 25 28 L25 38 C21 38 18 41 18 45 L18 58 C18 60 20 62 22 62 Z" fill="#faf5eb" />
+    <path d="M25 62 L22 72 M65 62 L68 72" stroke="#faf5eb" stroke-width="4" stroke-linecap="round" />
+    <!-- Accent Star / Crown -->
+    <circle cx="70" cy="22" r="8" fill="url(#goldGrad)" />
+  </g>
+  <!-- Text Brand -->
+  <text x="125" y="55" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="800" font-size="28" fill="#2c1a11" letter-spacing="-0.5">
+    MEUBEL ADITTYA PUTRA
+  </text>
+  <text x="126" y="82" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="600" font-size="13" fill="#b45309" letter-spacing="2.5">
+    EST. 2005 • SPESIALIS MEBEL &amp; CUSTOM LAMONGAN
+  </text>
+</svg>
+

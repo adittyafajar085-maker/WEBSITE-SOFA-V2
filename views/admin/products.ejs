@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || 'Produk Admin' %></title>
+    <style>
+      body{margin:0;font-family:Arial,sans-serif;background:#f4f0ec;color:#2a241f}.layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh} aside{background:#2e211b;color:#fff;padding:24px} a{text-decoration:none;color:inherit} aside a{display:block;margin-bottom:12px;color:#fff} main{padding:30px}.card{background:#fff;padding:20px;border-radius:16px;box-shadow:0 8px 18px rgba(0,0,0,.06)} table{width:100%;border-collapse:collapse;margin-top:16px} th,td{padding:10px;border-bottom:1px solid #eee;text-align:left}.actions{display:flex;gap:8px;align-items:center}.btn{display:inline-block;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:700}.btn-edit{background:#e9e0d6;color:#2a241f}.btn-delete{background:#8b2d2d;color:#fff;border:none;cursor:pointer}.danger-form{display:inline}
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside>
+        <h2>Admin</h2>
+        <a href="/admin">Dashboard</a>
+        <a href="/admin/products">Produk</a>
+        <a href="/admin/posts">Postingan</a>
+        <a href="/admin/profile">Profil</a>
+        <a href="/logout">Logout</a>
+      </aside>
+      <main>
+        <div class="card">
+          <h1>Kelola Produk</h1>
+          <p><a href="/admin/products/new">Tambah Produk Baru</a></p>
+          <table>
+            <thead>
+              <tr><th>Nama</th><th>Kategori</th><th>Harga</th><th>Aksi</th></tr>
+            </thead>
+            <tbody>
+              <% if (products && products.length) { %>
+                <% products.forEach((product) => { %>
+                  <tr>
+                    <td><%= product.name %></td>
+                    <td><%= product.categoryName || product.category %></td>
+                    <td><%= formatRupiah ? formatRupiah(product.price) : product.price %></td>
+                    <td>
+                      <div class="actions">
+                        <a class="btn btn-edit" href="/admin/products/edit/<%= product.id %>">Edit</a>
+                        <form class="danger-form" method="POST" action="/admin/products/delete/<%= product.id %>" onsubmit="return confirm('Hapus produk ini?')">
+                          <button class="btn btn-delete" type="submit">Hapus</button>
+                        </form>
+                      </div>
+                    </td>
+                  </tr>
+                <% }); %>
+              <% } else { %>
+                <tr><td colspan="4">Belum ada produk.</td></tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

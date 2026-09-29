@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || 'Postingan Admin' %></title>
+    <style>
+      body{margin:0;font-family:Arial,sans-serif;background:#f4f0ec;color:#2a241f}.layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh} aside{background:#2e211b;color:#fff;padding:24px} aside a{display:block;color:#fff;text-decoration:none;margin-bottom:12px} main{padding:30px}.card{background:#fff;padding:24px;border-radius:16px;box-shadow:0 8px 18px rgba(0,0,0,.06)} table{width:100%;border-collapse:collapse;margin-top:18px} th,td{padding:12px;border-bottom:1px solid #eee;text-align:left}.btn{display:inline-block;padding:10px 16px;background:#7a4f2a;color:#fff;text-decoration:none;border-radius:10px;font-weight:700}.small{padding:8px 12px;background:#eae1d8;color:#2a241f;border-radius:8px;text-decoration:none;display:inline-block;margin-right:8px}.danger{background:#8b2d2d;color:#fff}
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside>
+        <h2>Admin</h2>
+        <a href="/admin">Dashboard</a>
+        <a href="/admin/products">Produk</a>
+        <a href="/admin/posts">Postingan</a>
+        <a href="/admin/profile">Profil</a>
+        <a href="/logout">Logout</a>
+      </aside>
+      <main>
+        <div class="card">
+          <h1>Kelola Postingan</h1>
+          <a class="btn" href="/admin/posts/new">Tambah Postingan Baru</a>
+
+          <table>
+            <thead>
+              <tr><th>Judul</th><th>Penulis</th><th>Aksi</th></tr>
+            </thead>
+            <tbody>
+              <% if (posts && posts.length) { %>
+                <% posts.forEach((post) => { %>
+                  <tr>
+                    <td><%= post.title %></td>
+                    <td><%= post.author || 'Admin' %></td>
+                    <td>
+                      <a class="small" href="/admin/posts/edit/<%= post.id %>">Edit</a>
+                      <form method="POST" action="/admin/posts/delete/<%= post.id %>" style="display:inline;">
+                        <button class="small danger" type="submit" onclick="return confirm('Hapus postingan ini?')">Hapus</button>
+                      </form>
+                    </td>
+                  </tr>
+                <% }); %>
+              <% } else { %>
+                <tr><td colspan="3">Belum ada postingan.</td></tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

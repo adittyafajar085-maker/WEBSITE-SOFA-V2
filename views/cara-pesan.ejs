@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || 'Cara Pesan' %></title>
+    <style>
+      body{margin:0;font-family:Arial,sans-serif;background:#f6f1ec;color:#2d241f}.container{max-width:980px;margin:0 auto;padding:30px 20px 60px} h1{margin-bottom:20px}.steps{display:grid;gap:18px}.step{background:#fff;padding:20px;border-radius:16px;box-shadow:0 8px 16px rgba(0,0,0,.06)}.btn{display:inline-block;margin-top:20px;background:#7d4d2b;color:#fff;padding:12px 18px;border-radius:10px;font-weight:700;text-decoration:none}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Cara Pesan & Custom Order</h1>
+      <% const flowImage = (profile && profile.orderFlowImage) || '/images/order-flow.png'; %>
+      <div style="margin: 18px 0 28px;">
+        <img src="<%= flowImage %>" alt="Alur pemesanan" style="width:100%;max-width:900px;display:block;border-radius:16px;box-shadow:0 8px 18px rgba(0,0,0,.08);" />
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>1. Konsultasi Awal</h3>
+          <p>Hubungi kami melalui WhatsApp dan jelaskan kebutuhan ruangan, model, ukuran, warna, serta estimasi anggaran Anda.</p>
+        </div>
+        <div class="step">
+          <h3>2. Survey & Desain</h3>
+          <p>Kami akan membantu menentukan ukuran, jenis kayu, finishing, dan konsep yang paling sesuai dengan kebutuhan Anda.</p>
+        </div>
+        <div class="step">
+          <h3>3. Persetujuan & Pembayaran</h3>
+          <p>Setelah desain disetujui, kami lanjutkan ke tahap pembuatan dan pengiriman sesuai kesepakatan.</p>
+        </div>
+      </div>
+      <a class="btn" href="<%= customWaLink %>" target="_blank" rel="noreferrer">Konsultasi via WhatsApp</a>
+    </div>
+  </body>
+</html>

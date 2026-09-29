@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || 'Katalog Produk' %></title>
+    <style>
+      body { margin: 0; font-family: Arial, sans-serif; background: #f5f2ee; color: #352821; }
+      .container { max-width: 1100px; margin: 0 auto; padding: 24px 20px 60px; }
+      .top { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-top: 20px; }
+      .card { background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 8px 18px rgba(0,0,0,0.06); }
+      .card img { width: 100%; height: 200px; object-fit: cover; }
+      .card-body { padding: 16px; }
+      .price { font-weight: 700; color: #8b542d; }
+      a { color: #2f241f; text-decoration: none; }
+      nav { display: flex; gap: 18px; margin-bottom: 20px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <h1>Katalog Produk</h1>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/cara-pesan">Cara Pesan</a>
+          <a href="/postingan">Postingan</a>
+        </nav>
+      </div>
+      <% if (products && products.length) { %>
+        <div class="grid">
+          <% products.forEach((product) => { %>
+            <article class="card">
+              <a href="/produk/<%= product.id %>"><img src="<%= product.image || '/images/product-default.jpg' %>" alt="<%= product.name %>" /></a>
+              <div class="card-body">
+                <h3><a href="/produk/<%= product.id %>"><%= product.name %></a></h3>
+                <div class="price"><%= formatRupiah ? formatRupiah(product.price) : 'Rp ' + product.price %></div>
+              </div>
+            </article>
+          <% }); %>
+        </div>
+      <% } else { %>
+        <p>Belum ada produk yang tersedia.</p>
+      <% } %>
+    </div>
+  </body>
+</html>

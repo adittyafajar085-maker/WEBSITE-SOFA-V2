@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || 'Form Produk' %></title>
+    <style>
+      body{margin:0;font-family:Arial,sans-serif;background:#f4f0ec;color:#2a241f}.layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh} aside{background:#2e211b;color:#fff;padding:24px} aside a{display:block;color:#fff;text-decoration:none;margin-bottom:12px} main{padding:30px}.card{background:#fff;padding:24px;border-radius:16px;box-shadow:0 8px 18px rgba(0,0,0,.06)} form{display:grid;gap:16px}.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px} input,textarea,select,button{font:inherit} input,textarea,select{padding:10px 12px;border:1px solid #ddd;border-radius:10px;width:100%;box-sizing:border-box} textarea{min-height:120px;resize:vertical}.checkbox{display:flex;align-items:center;gap:10px} .btn{padding:12px 18px;border:none;border-radius:10px;background:#7a4f2a;color:#fff;font-weight:700;cursor:pointer}.secondary{background:#eee;color:#2a241f}.img-preview{max-width:220px;max-height:220px;border-radius:12px;object-fit:cover;border:1px solid #ddd;margin-top:8px}
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside>
+        <h2>Admin</h2>
+        <a href="/admin">Dashboard</a>
+        <a href="/admin/products">Produk</a>
+        <a href="/admin/posts">Postingan</a>
+        <a href="/admin/profile">Profil</a>
+        <a href="/logout">Logout</a>
+      </aside>
+      <main>
+        <div class="card">
+          <h1><%= isEdit ? 'Edit Produk' : 'Tambah Produk Baru' %></h1>
+
+          <form method="POST" action="<%= isEdit ? '/admin/products/edit/' + product.id : '/admin/products/new' %>" enctype="multipart/form-data">
+            <div class="row">
+              <div>
+                <label>Nama Produk</label>
+                <input name="name" value="<%= product ? product.name || '' : '' %>" required />
+              </div>
+              <div>
+                <label>Kategori</label>
+                <select name="category" required>
+                  <% if (categories && categories.length) { %>
+                    <% categories.forEach((category) => { %>
+                      <option value="<%= category.id %>" <%= product && product.category === category.id ? 'selected' : '' %>><%= category.name %></option>
+                    <% }); %>
+                  <% } %>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label>Harga</label>
+                <input name="price" type="number" min="0" value="<%= product ? product.price || 0 : 0 %>" required />
+              </div>
+              <div>
+                <label>Foto Produk (JPG/PNG)</label>
+                <input name="image" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" />
+                <% if (product && product.image) { %>
+                  <img class="img-preview" src="<%= product.image %>" alt="Preview produk" />
+                <% } %>
+              </div>
+            </div>
+
+            <div>
+              <label>Spesifikasi</label>
+              <textarea name="specs"><%= product ? product.specs || '' : '' %></textarea>
+            </div>
+
+            <div>
+              <label>Deskripsi</label>
+              <textarea name="description"><%= product ? product.description || '' : '' %></textarea>
+            </div>
+
+            <div class="checkbox">
+              <input type="checkbox" name="featured" <%= product && product.featured ? 'checked' : '' %> />
+              <label>Jadikan produk unggulan</label>
+            </div>
+
+            <div class="row">
+              <button class="btn" type="submit"><%= isEdit ? 'Perbarui Produk' : 'Simpan Produk' %></button>
+              <a class="btn secondary" href="/admin/products" style="display:inline-block;text-align:center;">Batal</a>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

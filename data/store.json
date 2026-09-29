@@ -1,0 +1,185 @@
+{
+  "profile": {
+    "name": "Meubel Adittya Putra",
+    "tagline": "Penyedia Sofa Berkualitas & Spesialis Custom Furniture di Lamongan",
+    "description": "Meubel Adittya Putra merupakan produsen sofa modern terpercaya di Lamongan yang telah berpengalaman sejak tahun 2005. Kebebasan dalam menentukan desain sesuai dengan keinginan anda dengan jaminan kualitas melalui garansi selama 3 tahun. Kami berkomitmen menghadirkan kenyamanan dan kemewahan dalam setiap sudut ruang tamu Anda melalui furnitur berkualitas tinggi.",
+    "foundedYear": 2005,
+    "phone": "085778610437",
+    "whatsapp": "6285778610437",
+    "email": "meubeladittyaputra@gmail.com",
+    "address": "V9RC+HW3, Tuyuh, Pangkatrejo, Kec. Lamongan, Kabupaten Lamongan, Jawa Timur 62218",
+    "operationalHours": {
+      "weekdays": "Senin - Sabtu: 07.00 - 20.00 WIB",
+      "sunday": "Minggu: 10.00 - 20.00 WIB"
+    },
+    "maps": {
+      "plusCode": "V9RC+HW3 Lamongan",
+      "directUrl": "https://maps.google.com/?q=V9RC%2BHW3,+Tuyuh,+Pangkatrejo,+Kec.+Lamongan,+Kabupaten+Lamongan,+Jawa+Timur+62218",
+      "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.9806497042575!2d112.4005!3d-7.128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMDcnNDAuOCJTIDExMsKwMjQnMDEuOCJF!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+    },
+    "hero": {
+      "title": "Furniture Sofa Elegan Berkualitas",
+      "subtitle": "Kenyamanan dan Kemewahan ruang impian Anda dimulai dari sini. Menerima pesanan custom ukuran, model, dan warna finishing dengan jaminan kayu anti totor.",
+      "bannerImage": "/uploads/bannerImage-1789636925135-689890080.jpeg",
+      "ctaCatalogText": "Lihat Katalog Produk",
+      "ctaCustomText": "Konsultasi Custom Order"
+    },
+    "advantages": [
+      {
+        "id": "adv-1",
+        "title": "Kayu Pilihan Anti Totor",
+        "description": "Menggunakan bahan kayu solid pilihan berkualitas tinggi yang anti totor/kumbang kayu.",
+        "icon": "shield-check"
+      },
+      {
+        "id": "adv-2",
+        "title": "Pengrajin Berpengalaman > 10 Tahun",
+        "description": "Didukung para pengrajin mebel ahli berpengalaman lebih dari 10 tahun.",
+        "icon": "user-check"
+      },
+      {
+        "id": "adv-3",
+        "title": "Menerima Custom Order Bebas",
+        "description": "Bebas kustomisasi ukuran, warna finishing, dan model sesuai kebutuhan Anda.",
+        "icon": "sparkles"
+      }
+    ],
+    "orderFlowImage": "/uploads/orderFlowImage-1789636925141-478441749.jpeg",
+    "googleAnalyticsId": ""
+  },
+  "admin": {
+    "email": "admin@adittyaputra.com",
+    "password": "admin123meubel",
+    "name": "Owner Meubel Adittya Putra"
+  },
+  "categories": [
+    {
+      "id": "ruang-tamu",
+      "name": "Ruang Tamu"
+    },
+    {
+      "id": "kamar-tidur",
+      "name": "Kamar Tidur"
+    },
+    {
+      "id": "dapur-makan",
+      "name": "Dapur & Ruang Makan"
+    },
+    {
+      "id": "kantor",
+      "name": "Ruang Kerja / Kantor"
+    },
+    {
+      "id": "outdoor",
+      "name": "Outdoor & Teras"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod-1",
+      "name": "Sofa Set Luxury Ribbon Tufted 3-2-1",
+      "category": "ruang-tamu",
+      "categoryName": "Ruang Tamu",
+      "price": 5500000,
+      "specs": "✨ Spesifikasi Sofa Meubel Adittya Putra ✨\r\n\r\n🪵 Kayu Kamper — Rangka kuat & tahan lama\r\n🌀 Pegas & Full Busa — Dudukan ekstra empuk & nyaman\r\n🧵 Kain & Oscar — Pelapis menyesuaikan model sofa\r\n🛡️ Garansi 3–5 Tahun — Garansi rangka & dudukan busa\r\n\r\nBoleh diinfokan model yang lagi ditaksir? Nanti aku bantu pilihkan yang cocok! 🛋️",
+      "description": "🛋️✨ MEUBEL ADITTYA PUTRA ✨🛋️\r\n🏷️ Spesifikasi Ukuran & Kelengkapan Produk\r\n\r\n📌 Model Sofa: Sofa Set Luxury Ribbon Tufted 3-2-1\r\n\r\n📐 Detail Ukuran Sofa \r\n🛋️ 3 Seater: 200 x 80 x 80 cm\r\n🛋️ 2 Seater: 150 x 80 x 80 cm\r\n🪑 1 Seater: 100 x 80 x 80 cm\r\n\r\n🎁 Include Dalam Paket:\r\n🧸 Bantal Sofa: 6 pcs (bisa pilih warna/motif)\r\n☕ Model Meja: Meja Solid \r\n💡 Di Meubel Adittya Putra juga bisa kustom ukuran & warna sesuai ruangan kamu ya!\r\n\r\nMau sekalian cek pilihan katalog warnanya? 😊✨",
+      "image": "/uploads/image-1789637151985-290216744.jpeg",
+      "featured": true,
+      "createdAt": "2026-09-17T10:00:00.000Z",
+      "updatedAt": "2026-09-17T10:31:45.245Z"
+    },
+    {
+      "id": "prod-2",
+      "name": "Sofa Minimalis 2-2-1",
+      "category": "ruang-tamu",
+      "categoryName": "Ruang Tamu",
+      "price": 2000000,
+      "specs": "✨ Spesifikasi Sofa Meubel Adittya Putra ✨\r\n\r\n🪵 Kayu Kamper — Rangka kuat & tahan lama\r\n🌀 Pegas & Full Busa — Dudukan ekstra empuk & nyaman\r\n🧵 Kain & Oscar — Pelapis menyesuaikan model sofa\r\n🛡️ Garansi 3–5 Tahun — Garansi rangka & dudukan busa\r\n\r\nBoleh diinfokan model yang lagi ditaksir? Nanti aku bantu pilihkan yang cocok! 🛋️",
+      "description": "🛋️✨ MEUBEL ADITTYA PUTRA ✨🛋️\r\n🏷️ Spesifikasi Ukuran & Kelengkapan Produk\r\n\r\n📌 Model Sofa: Sofa Minimalis 2-2-1\r\n\r\n📐 Detail Ukuran Sofa \r\n🛋️ 2 Seater: 140 x 80 x 80 cm\r\n🛋️ 2 Seater: 140 x 80 x 80 cm\r\n🪑 1 Seater: 80 x 80 x 80 cm\r\n\r\n🎁 Include Dalam Paket:\r\n🧸 Bantal Sofa: 5 pcs (bisa pilih warna/motif)\r\n☕ Model Meja: Meja Solid \r\n💡 Di Meubel Adittya Putra juga bisa kustom ukuran & warna sesuai ruangan kamu ya!\r\n\r\nMau sekalian cek pilihan katalog warnanya? 😊✨",
+      "image": "/uploads/image-1789640835258-64373270.jpeg",
+      "featured": true,
+      "createdAt": "2026-09-17T10:05:00.000Z",
+      "updatedAt": "2026-09-17T10:32:01.246Z"
+    },
+    {
+      "id": "prod-3",
+      "name": "Tempat Tidur Minimalis Kayu Jati Dipan Modern",
+      "category": "kamar-tidur",
+      "categoryName": "Kamar Tidur",
+      "price": 4200000,
+      "specs": "Ukuran King (180 x 200 cm) | Bahan Kayu Jati Solid | Finishing Natural Doff / Walnut | Sandaran Busa Headboard Mewah",
+      "description": "Dipan tempat tidur bernuansa modern minimalis dengan headboard empuk yang nyaman untuk bersandar. Rangka bawah dirancang sangat kokoh tanpa bunyi derit.",
+      "image": "/images/product-dipan.jpg",
+      "featured": true,
+      "createdAt": "2026-09-17T10:10:00.000Z"
+    },
+    {
+      "id": "prod-4",
+      "name": "Lemari Pakaian 3 Pintu Sliding Minimalis",
+      "category": "kamar-tidur",
+      "categoryName": "Kamar Tidur",
+      "price": 4750000,
+      "specs": "P 160cm x L 55cm x T 210cm | Bahan Kayu Solid & Blokteak Super tebal 18mm | Cermin Full Body | Rel Sliding Halus",
+      "description": "Lemari pakaian 3 pintu sliding hemat tempat dengan cermin besar, gantungan baju jas, serta laci dalam bersekat aman dengan kunci pengaman.",
+      "image": "/images/product-lemari.jpg",
+      "featured": false,
+      "createdAt": "2026-09-17T10:15:00.000Z"
+    },
+    {
+      "id": "prod-5",
+      "name": "Set Meja Makan Kayu Solid 6 Kursi Modern",
+      "category": "dapur-makan",
+      "categoryName": "Dapur & Ruang Makan",
+      "price": 4900000,
+      "specs": "Meja P 160cm x L 90cm x T 76cm + 6 Kursi Dudukan Busa | Bahan Kayu Jati / Mahoni Oven | Finishing Water-repellent",
+      "description": "Meja makan keluarga bernuansa hangat dengan konstruksi kayu solid kokoh. Lapisan permukaan meja tahan panas piring makanan dan mudah dibersihkan dari tumpahan noda.",
+      "image": "/images/product-meja-makan.jpg",
+      "featured": true,
+      "createdAt": "2026-09-17T10:20:00.000Z"
+    },
+    {
+      "id": "prod-6",
+      "name": "Meja Kerja Direktur & Rak Buku Ergonomis",
+      "category": "kantor",
+      "categoryName": "Ruang Kerja / Kantor",
+      "price": 3100000,
+      "specs": "Meja P 140cm x L 70cm x T 75cm + Laci 3 Susun | Lubang Manajemen Kabel | Rangka Kokoh Anti Goyang",
+      "description": "Meja kantor profesional yang mendukung produktivitas kerja harian Anda. Desain rapi dan bersih dengan tempat penyimpanan dokumen yang luas.",
+      "image": "/images/product-meja-kerja.jpg",
+      "featured": false,
+      "createdAt": "2026-09-17T10:25:00.000Z"
+    }
+  ],
+  "posts": [
+    {
+      "id": "post-1",
+      "title": "Tips Merawat Mebel Kayu Solid Agar Awet Puluhan Tahun",
+      "slug": "tips-merawat-mebel-kayu-solid",
+      "excerpt": "Pelajari cara mudah merawat dan membersihkan perabot kayu jati atau mahoni agar seratnya tetap berkilau alami dan terbebas dari hama totor kayu.",
+      "content": "<p>Mebel kayu solid seperti kayu jati dan mahoni adalah investasi jangka panjang untuk kenyamanan rumah. Agar furnitur kesayangan Anda tetap kokoh dan tampak anggun hingga puluhan tahun, perhatikan beberapa langkah perawatan dasar berikut:</p><br><h5>1. Hindari Kontak Langsung Sinar Matahari Berlebih</h5><p>Paparan sinar UV terus-menerus dapat membuat lapisan pelitur atau melamine memudar dan memicu retakan kecil pada serat kayu. Tempatkan furnitur pada area yang teduh atau gunakan tirai tipis.</p><br><h5>2. Bersihkan Debu Secara Berkala dengan Kain Mikrofiber</h5><p>Gunakan kain lembut setengah kering atau cairan pembersih khusus kayu (wood polish) minimal seminggu sekali untuk mengangkat debu tanpa menggores pernis.</p><br><h5>3. Jaga Kelembapan Ruangan</h5><p>Ruangan yang terlalu lembap dapat memicu pertumbuhan jamur pada sela-sela kayu. Pastikan sirkulasi udara di ruang tamu atau kamar tidur Anda mengalir dengan baik.</p>",
+      "image": "/images/post-wood-care.jpg",
+      "author": "Meubel Adittya Putra",
+      "createdAt": "2026-09-17T08:00:00.000Z"
+    },
+    {
+      "id": "post-2",
+      "title": "Kelebihan Kayu Solid Anti Totor untuk Furnitur Rumah Idaman",
+      "slug": "kelebihan-kayu-solid-anti-totor",
+      "excerpt": "Kenapa Meubel Adittya Putra selalu mengutamakan kayu pilihan anti totor? Simak penjelasannya mengapa kualitas bahan baku adalah kunci utama keawetan.",
+      "content": "<p>Totor atau kumbang bubuk kayu adalah musuh utama dari perabot rumah tangga. Banyak mebel yang tampak bagus di awal, namun keropos dalam hitungan tahun karena kayu yang digunakan masih basah atau belum matang.</p><br><p>Di workshop Meubel Adittya Putra Lamongan, setiap batang kayu yang kami gunakan telah melewati proses pengeringan alami maupun oven serta perlakuan treatment khusus agar getah manis kesukaan serangga hilang. Hasilnya, furnitur Anda dijamin kokoh, kuat menahan beban berat, dan tahan terhadap gangguan hama kumbang kayu.</p>",
+      "image": "/images/post-anti-totor.jpg",
+      "author": "Meubel Adittya Putra",
+      "createdAt": "2026-09-17T09:00:00.000Z"
+    },
+    {
+      "id": "post-3",
+      "title": "Panduan Memesan Custom Sofa dan Furniture Sesuai Ukuran Ruangan",
+      "slug": "panduan-memesan-custom-sofa",
+      "excerpt": "Punya denah ruangan khusus atau ingin desain sofa yang tidak pasaran? Ketahui alur mudah konsultasi dan pembuatan custom furniture bersama kami.",
+      "content": "<p>Setiap rumah memiliki dimensi dan gaya interior yang unik. Seringkali produk jadi di toko retail terlalu besar atau kurang pas dengan sudut dinding rumah Anda. Layanan Custom Order di Meubel Adittya Putra hadir sebagai solusi terbaik.</p><br><p>Anda cukup mengirimkan foto referensi atau ukuran ruangan melalui WhatsApp, dan tim pengrajin kami akan membantu menghitung dimensi terbaik, jenis rangka, serta pilihan kain dan busa sesuai anggaran Anda.</p>",
+      "image": "/images/post-custom-sofa.jpg",
+      "author": "Meubel Adittya Putra",
+      "createdAt": "2026-09-17T09:30:00.000Z"
+    }
+  ]
+}

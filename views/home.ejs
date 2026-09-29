@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || 'Meubel Adittya Putra' %></title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 0; background: #f7f3ee; color: #2f241f; }
+      a { color: inherit; text-decoration: none; }
+      .container { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+      header { background: #4a2f1d; color: white; }
+      .topbar { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; }
+      .logo { font-size: 1.6rem; font-weight: 700; }
+      nav { display: flex; gap: 20px; flex-wrap: wrap; }
+      .hero { background: linear-gradient(135deg, #7a4f2a, #d2a46b); color: white; padding: 70px 0; }
+      .hero-inner { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; align-items: center; }
+      .hero h1 { font-size: clamp(2rem, 4vw, 4rem); margin: 0 0 16px; }
+      .hero p { font-size: 1.04rem; line-height: 1.7; }
+      .cta { display: inline-block; background: white; color: #4a2f1d; padding: 12px 24px; border-radius: 999px; font-weight: 700; margin-top: 16px; }
+      .hero-card { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); padding: 22px; border-radius: 20px; }
+      section { padding: 48px 0; }
+      h2 { font-size: 2rem; margin-bottom: 24px; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; }
+      .card { background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 8px 18px rgba(0,0,0,0.08); }
+      .card img { width: 100%; height: 220px; object-fit: cover; }
+      .card-body { padding: 16px; }
+      .badge { display: inline-block; background: #e6d6c0; color: #4a2f1d; border-radius: 999px; padding: 6px 10px; font-size: 0.75rem; margin-bottom: 8px; }
+      .price { font-weight: 700; color: #8f5b2e; margin-top: 8px; }
+      .post-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+      .post-card { background: white; padding: 18px; border-radius: 18px; box-shadow: 0 8px 18px rgba(0,0,0,0.08); }
+      footer { background: #2e211b; color: white; padding: 34px 0; }
+      .meta { color: #6d5443; }
+      @media (max-width: 768px) { .hero-inner { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container topbar">
+        <div class="logo"><%= profile.name || 'Meubel Adittya Putra' %></div>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/katalog">Katalog</a>
+          <a href="/cara-pesan">Cara Pesan</a>
+          <a href="/postingan">Postingan</a>
+          <a href="/login">Login</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <div class="badge">Furniture Kayu & Sofa Custom</div>
+          <h1><%= (profile.hero && profile.hero.title) || 'Furniture Kayu Solid & Sofa Elegan Berkualitas' %></h1>
+          <p><%= (profile.hero && profile.hero.subtitle) || 'Kualitas, kenyamanan, dan desain custom untuk rumah Anda.' %></p>
+          <a class="cta" href="/katalog">Lihat Katalog</a>
+        </div>
+        <div class="hero-card">
+          <% const heroBanner = (profile.hero && profile.hero.bannerImage) || '/images/hero-banner.jpg'; %>
+          <img src="<%= heroBanner %>" alt="Banner toko" style="width:100%;max-height:260px;object-fit:cover;border-radius:18px;display:block;margin-bottom:16px;" />
+          <p><strong>Alamat</strong></p>
+          <p><%= profile.address || 'Lamongan, Jawa Timur' %></p>
+          <p><strong>WhatsApp</strong></p>
+          <p><%= profile.whatsapp || '6285778610437' %></p>
+          <p><strong>Jam Operasional</strong></p>
+          <p><%= (profile.operationalHours && profile.operationalHours.weekdays) || 'Senin - Sabtu: 07.00 - 20.00 WIB' %></p>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section>
+        <div class="container">
+          <h2>Produk Unggulan</h2>
+          <div class="grid">
+            <% if (products && products.length) { %>
+              <% products.forEach((product) => { %>
+                <article class="card">
+                  <a href="/produk/<%= product.id %>">
+                    <img src="<%= product.image || '/images/product-default.jpg' %>" alt="<%= product.name %>" />
+                  </a>
+                  <div class="card-body">
+                    <div class="badge"><%= product.categoryName || product.category || 'Produk' %></div>
+                    <h3><a href="/produk/<%= product.id %>"><%= product.name %></a></h3>
+                    <div class="meta"><%= product.specs || 'Desain custom mebel berkualitas.' %></div>
+                    <div class="price"><%= formatRupiah ? formatRupiah(product.price) : 'Rp ' + product.price %></div>
+                  </div>
+                </article>
+              <% }); %>
+            <% } else { %>
+              <p>Belum ada produk yang dipublikasikan.</p>
+            <% } %>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <h2>Kenapa Memilih Kami</h2>
+          <div class="grid">
+            <% const advantages = profile.advantages || []; %>
+            <% advantages.forEach((item) => { %>
+              <div class="card">
+                <div class="card-body">
+                  <div class="badge"><%= item.icon || 'star' %></div>
+                  <h3><%= item.title %></h3>
+                  <p class="meta"><%= item.description %></p>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <h2>Postingan Terbaru</h2>
+          <div class="post-list">
+            <% if (posts && posts.length) { %>
+              <% posts.forEach((post) => { %>
+                <article class="post-card">
+                  <h3><a href="/postingan/<%= post.slug %>"><%= post.title %></a></h3>
+                  <p class="meta"><%= post.excerpt || 'Informasi terbaru dari kami.' %></p>
+                  <a href="/postingan/<%= post.slug %>">Baca Selengkapnya</a>
+                </article>
+              <% }); %>
+            <% } else { %>
+              <p>Belum ada postingan.</p>
+            <% } %>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="logo"><%= profile.name || 'Meubel Adittya Putra' %></div>
+        <p><%= profile.address || 'Lamongan, Jawa Timur' %></p>
+        <p><%= profile.phone || '085778610437' %> | <%= profile.email || 'meubeladittyaputra@gmail.com' %></p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title || 'Detail Postingan' %></title>
+    <style>
+      body{margin:0;font-family:Arial,sans-serif;background:#f6f1ec;color:#2d241f}.container{max-width:1000px;margin:0 auto;padding:30px 20px 60px} .article{background:#fff;padding:26px;border-radius:18px;box-shadow:0 10px 18px rgba(0,0,0,.06)} img{max-width:100%;border-radius:12px}.related{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:18px}.card{background:#fff;padding:18px;border-radius:14px;box-shadow:0 8px 16px rgba(0,0,0,.06)} a{text-decoration:none;color:inherit}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="/postingan">← Kembali ke Postingan</a>
+      <div class="article">
+        <h1><%= post.title %></h1>
+        <p><strong>Penulis:</strong> <%= post.author || 'Meubel Adittya Putra' %></p>
+        <% if (post.image) { %>
+          <img src="<%= post.image %>" alt="<%= post.title %>" />
+        <% } %>
+        <div><%- post.content || 'Konten belum tersedia.' %></div>
+      </div>
+
+      <% if (otherPosts && otherPosts.length) { %>
+        <h3 style="margin-top:30px;">Postingan Lainnya</h3>
+        <div class="related">
+          <% otherPosts.forEach((item) => { %>
+            <div class="card">
+              <h4><a href="/postingan/<%= item.slug %>"><%= item.title %></a></h4>
+            </div>
+          <% }); %>
+        </div>
+      <% } %>
+    </div>
+  </body>
+</html>
