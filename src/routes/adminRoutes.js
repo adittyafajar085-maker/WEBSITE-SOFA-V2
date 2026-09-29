@@ -7,8 +7,14 @@
 const express = require("express");
 const router = express.Router();
 const StoreModel = require("../models/storeModel");
+const Product = require("../models/productModel");
+const Post = require("../models/postModel");
 const { isAuthenticated } = require("../middleware/auth");
 const upload = require("../middleware/upload");
+
+const asyncHandler = (handler) => (req, res, next) => {
+  Promise.resolve(handler(req, res, next)).catch(next);
+};
 
 // Semua route di bawah ini wajib terautentikasi
 router.use(isAuthenticated);
@@ -28,10 +34,10 @@ function formatRupiah(number) {
 // ==========================================
 // 1. DASHBOARD UTAMA
 // ==========================================
-router.get("/", (req, res) => {
+router.get("/", asyncHandler(async (req, res) => {
   const profile = StoreModel.getProfile();
-  const products = StoreModel.getProducts();
-  const posts = StoreModel.getPosts();
+  const products = await Product.find().sort({ createdAt: -1 });
+  const posts = await Post.find().sort({ createdAt: -1 });
   const categories = StoreModel.getCategories();
 
   res.render("admin/dashboard", {
@@ -48,19 +54,27 @@ router.get("/", (req, res) => {
     success: req.query.success || null,
     error: req.query.error || null,
   });
-});
+}));
 
 // ==========================================
 // 2. MANAJEMEN PRODUK
 // ==========================================
 
 // Daftar Produk
-router.get("/products", (req, res) => {
+router.get("/products", asyncHandler(async (req, res) => {
   const profile = StoreModel.getProfile();
   const categories = StoreModel.getCategories();
   const search = req.query.q || "";
   const category = req.query.kategori || "";
-  const products = StoreModel.getProducts({ search, category });
+  let products = await Product.find().sort({ createdAt: -1 });
+  if (category.trim()) products = products.filter((product) => product.category === category);
+  if (search.trim()) {
+    const keyword = search.trim().toLowerCase();
+    products = products.filter((product) =>
+      [product.name, product.description, product.specs, product.categoryName]
+        .some((value) => (value || "").toLowerCase().includes(keyword))
+    );
+  }
 
   res.render("admin/products", {
     title: "Kelola Produk - Admin Meubel Adittya Putra",
@@ -75,7 +89,7 @@ router.get("/products", (req, res) => {
     success: req.query.success || null,
     error: req.query.error || null,
   });
-});
+}));
 
 // Form Tambah Produk Baru
 router.get("/products/new", (req, res) => {
@@ -95,23 +109,22 @@ router.get("/products/new", (req, res) => {
 });
 
 // Proses Tambah Produk Baru
-router.post("/products/new", upload.single("image"), (req, res) => {
+router.post("/products/new", upload.single("image"), asyncHandler(async (req, res) => {
   try {
     const { name, category, price, specs, description, featured } = req.body;
 
-    let imagePath = "/images/product-default.jpg";
-    if (req.file) {
-      imagePath = `/uploads/${req.file.filename}`;
-    }
+    const imagePath = req.file ? req.file.path : "/images/product-default.jpg";
+    const matchedCategory = StoreModel.getCategories().find((item) => item.id === category);
 
-    StoreModel.addProduct({
+    await Product.create({
       name,
       category,
+      categoryName: matchedCategory ? matchedCategory.name : category,
       price,
       specs,
       description,
-      image: imagePath,
-      featured,
+      url_gambar: imagePath,
+      featured: featured === "on" || featured === "true",
     });
 
     res.redirect("/admin/products?success=Produk+berhasil+ditambahkan");
@@ -119,13 +132,13 @@ router.post("/products/new", upload.single("image"), (req, res) => {
     console.error("Gagal menambah produk:", error);
     res.redirect("/admin/products/new?error=Terjadi+kesalahan+saat+menambah+produk");
   }
-});
+}));
 
 // Form Edit Produk
-router.get("/products/edit/:id", (req, res) => {
+router.get("/products/edit/:id", asyncHandler(async (req, res) => {
   const profile = StoreModel.getProfile();
   const categories = StoreModel.getCategories();
-  const product = StoreModel.getProductById(req.params.id);
+  const product = await Product.findById(req.params.id);
 
   if (!product) {
     return res.redirect("/admin/products?error=Produk+tidak+ditemukan");
@@ -141,58 +154,57 @@ router.get("/products/edit/:id", (req, res) => {
     activeMenu: "products",
     error: null,
   });
-});
+}));
 
 // Proses Update Produk
-router.post("/products/edit/:id", upload.single("image"), (req, res) => {
+router.post("/products/edit/:id", upload.single("image"), asyncHandler(async (req, res) => {
   try {
     const { name, category, price, specs, description, featured } = req.body;
-    const existing = StoreModel.getProductById(req.params.id);
+    const existing = await Product.findById(req.params.id);
 
     if (!existing) {
       return res.redirect("/admin/products?error=Produk+tidak+ditemukan");
     }
 
-    let imagePath = existing.image;
-    if (req.file) {
-      imagePath = `/uploads/${req.file.filename}`;
-    }
+    const imagePath = req.file ? req.file.path : existing.url_gambar;
+    const matchedCategory = StoreModel.getCategories().find((item) => item.id === category);
 
-    StoreModel.updateProduct(req.params.id, {
+    await Product.findByIdAndUpdate(req.params.id, {
       name,
       category,
+      categoryName: matchedCategory ? matchedCategory.name : category,
       price,
       specs,
       description,
-      image: imagePath,
-      featured,
-    });
+      url_gambar: imagePath,
+      featured: featured === "on" || featured === "true",
+    }, { runValidators: true });
 
     res.redirect("/admin/products?success=Produk+berhasil+diperbarui");
   } catch (error) {
     console.error("Gagal memperbarui produk:", error);
     res.redirect(`/admin/products/edit/${req.params.id}?error=Gagal+memperbarui+produk`);
   }
-});
+}));
 
 // Proses Hapus Produk
-router.post("/products/delete/:id", (req, res) => {
-  const deleted = StoreModel.deleteProduct(req.params.id);
+router.post("/products/delete/:id", asyncHandler(async (req, res) => {
+  const deleted = await Product.findByIdAndDelete(req.params.id);
   if (deleted) {
     res.redirect("/admin/products?success=Produk+berhasil+dihapus");
   } else {
     res.redirect("/admin/products?error=Gagal+menghapus+produk");
   }
-});
+}));
 
 // ==========================================
 // 3. MANAJEMEN POSTINGAN / ARTIKEL / GALERI
 // ==========================================
 
 // Daftar Postingan
-router.get("/posts", (req, res) => {
+router.get("/posts", asyncHandler(async (req, res) => {
   const profile = StoreModel.getProfile();
-  const posts = StoreModel.getPosts();
+  const posts = await Post.find().sort({ createdAt: -1 });
 
   res.render("admin/posts", {
     title: "Kelola Postingan & Artikel - Admin Meubel Adittya Putra",
@@ -203,7 +215,7 @@ router.get("/posts", (req, res) => {
     success: req.query.success || null,
     error: req.query.error || null,
   });
-});
+}));
 
 // Form Tambah Postingan Baru
 router.get("/posts/new", (req, res) => {
@@ -221,20 +233,21 @@ router.get("/posts/new", (req, res) => {
 });
 
 // Proses Tambah Postingan Baru
-router.post("/posts/new", upload.single("image"), (req, res) => {
+router.post("/posts/new", upload.single("image"), asyncHandler(async (req, res) => {
   try {
     const { title, excerpt, content, author } = req.body;
 
-    let imagePath = "/images/post-default.jpg";
-    if (req.file) {
-      imagePath = `/uploads/${req.file.filename}`;
-    }
+    const imagePath = req.file ? req.file.path : "/images/post-default.jpg";
+    const slugBase = (title || "postingan").toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
 
-    StoreModel.addPost({
+    await Post.create({
       title,
+      slug: `${slugBase}-${Date.now()}`,
       excerpt,
       content,
-      image: imagePath,
+      url_gambar: imagePath,
       author: author || "Meubel Adittya Putra",
     });
 
@@ -243,12 +256,12 @@ router.post("/posts/new", upload.single("image"), (req, res) => {
     console.error("Gagal menambah postingan:", error);
     res.redirect("/admin/posts/new?error=Terjadi+kesalahan+saat+menambah+postingan");
   }
-});
+}));
 
 // Form Edit Postingan
-router.get("/posts/edit/:id", (req, res) => {
+router.get("/posts/edit/:id", asyncHandler(async (req, res) => {
   const profile = StoreModel.getProfile();
-  const post = StoreModel.getPostById(req.params.id);
+  const post = await Post.findById(req.params.id);
 
   if (!post) {
     return res.redirect("/admin/posts?error=Postingan+tidak+ditemukan");
@@ -263,47 +276,44 @@ router.get("/posts/edit/:id", (req, res) => {
     activeMenu: "posts",
     error: null,
   });
-});
+}));
 
 // Proses Update Postingan
-router.post("/posts/edit/:id", upload.single("image"), (req, res) => {
+router.post("/posts/edit/:id", upload.single("image"), asyncHandler(async (req, res) => {
   try {
     const { title, excerpt, content, author } = req.body;
-    const existing = StoreModel.getPostById(req.params.id);
+    const existing = await Post.findById(req.params.id);
 
     if (!existing) {
       return res.redirect("/admin/posts?error=Postingan+tidak+ditemukan");
     }
 
-    let imagePath = existing.image;
-    if (req.file) {
-      imagePath = `/uploads/${req.file.filename}`;
-    }
+    const imagePath = req.file ? req.file.path : existing.url_gambar;
 
-    StoreModel.updatePost(req.params.id, {
+    await Post.findByIdAndUpdate(req.params.id, {
       title,
       excerpt,
       content,
-      image: imagePath,
+      url_gambar: imagePath,
       author,
-    });
+    }, { runValidators: true });
 
     res.redirect("/admin/posts?success=Postingan+berhasil+diperbarui");
   } catch (error) {
     console.error("Gagal memperbarui postingan:", error);
     res.redirect(`/admin/posts/edit/${req.params.id}?error=Gagal+memperbarui+postingan`);
   }
-});
+}));
 
 // Proses Hapus Postingan
-router.post("/posts/delete/:id", (req, res) => {
-  const deleted = StoreModel.deletePost(req.params.id);
+router.post("/posts/delete/:id", asyncHandler(async (req, res) => {
+  const deleted = await Post.findByIdAndDelete(req.params.id);
   if (deleted) {
     res.redirect("/admin/posts?success=Postingan+berhasil+dihapus");
   } else {
     res.redirect("/admin/posts?error=Gagal+menghapus+postingan");
   }
-});
+}));
 
 // ==========================================
 // 4. KELOLA PROFIL TOKO & INFORMASI BISNIS

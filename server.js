@@ -9,27 +9,17 @@ require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
 const path = require("path");
-const fs = require("fs");
 
 const config = require("./src/config/config");
+const connectDatabase = require("./src/config/database");
 const publicRoutes = require("./src/routes/publicRoutes");
 const adminRoutes = require("./src/routes/adminRoutes");
 const authRoutes = require("./src/routes/authRoutes");
+const productApiRoutes = require("./src/routes/productApiRoutes");
 const StoreModel = require("./src/models/storeModel");
 
 const app = express();
 const PORT = config.port;
-
-// Pastikan direktori uploads dan data sudah ada
-const dataDir = path.join(__dirname, "data");
-const uploadsDir = path.join(__dirname, "public", "uploads");
-const imagesDir = path.join(__dirname, "public", "images");
-
-[dataDir, uploadsDir, imagesDir].forEach((dir) => {
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-});
 
 // Setup View Engine EJS
 app.set("view engine", "ejs");
@@ -57,6 +47,10 @@ app.use(
   })
 );
 
+app.use((req, res, next) => {
+  connectDatabase().then(() => next()).catch(next);
+});
+
 // Global Template Variables (Tersedia di semua file .ejs)
 app.use((req, res, next) => {
   res.locals.currentUser = req.session.user || null;
@@ -74,6 +68,7 @@ app.use("/", authRoutes);
 
 // Rute Dashboard Admin (/admin/*)
 app.use("/admin", adminRoutes);
+app.use("/api/products", productApiRoutes);
 
 // Rute Publik untuk Pelanggan (/, /katalog, /cara-pesan, /postingan, dll)
 app.use("/", publicRoutes);
@@ -101,13 +96,11 @@ app.use((err, req, res, next) => {
   `);
 });
 
-// Menjalankan Server
-app.listen(PORT, () => {
-  console.log("=================================================");
-  console.log(`🚀 Meubel Adittya Putra Server Aktif!`);
-  console.log(`🌐 Akses Pelanggan (Public): http://localhost:${PORT}`);
-  console.log(`🔐 Akses Admin (Dashboard): http://localhost:${PORT}/admin`);
-  console.log(`🔑 Login Admin:            http://localhost:${PORT}/login`);
-  console.log("=================================================");
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Meubel Adittya Putra aktif di http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
 

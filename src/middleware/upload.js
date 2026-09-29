@@ -6,25 +6,25 @@
 
 const multer = require("multer");
 const path = require("path");
-const fs = require("fs");
-const config = require("../config/config");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("../config/cloudinary");
 
-// Pastikan direktori uploads tersedia
-if (!fs.existsSync(config.uploadsDir)) {
-  fs.mkdirSync(config.uploadsDir, { recursive: true });
-}
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: async (req, file) => {
+    const isPostImage = req.originalUrl.includes("/posts/");
+    const folder = file.fieldname === "image"
+      ? `meubel-adittya/${isPostImage ? "posts" : "products"}`
+      : "meubel-adittya/site";
+    const basename = path.parse(file.originalname).name
+      .replace(/[^a-zA-Z0-9_-]/g, "-")
+      .slice(0, 40);
 
-// Konfigurasi penyimpanan disk multer
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, config.uploadsDir);
-  },
-  filename: function (req, file, cb) {
-    // Generate nama file unik: prefix-timestamp-random.ext
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    const ext = path.extname(file.originalname).toLowerCase();
-    const cleanFieldName = file.fieldname.replace(/[^a-zA-Z0-9]/g, "");
-    cb(null, `${cleanFieldName}-${uniqueSuffix}${ext}`);
+    return {
+      folder,
+      public_id: `${basename || file.fieldname}-${Date.now()}-${Math.round(Math.random() * 1e9)}`,
+      allowed_formats: ["jpg", "jpeg", "png", "webp", "gif", "svg"],
+    };
   },
 });
 

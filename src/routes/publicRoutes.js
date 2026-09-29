@@ -7,6 +7,12 @@
 const express = require("express");
 const router = express.Router();
 const StoreModel = require("../models/storeModel");
+const Product = require("../models/productModel");
+const Post = require("../models/postModel");
+
+const asyncHandler = (handler) => (req, res, next) => {
+  Promise.resolve(handler(req, res, next)).catch(next);
+};
 
 /**
  * Format angka ke Rupiah helper
@@ -23,11 +29,11 @@ function formatRupiah(number) {
 /**
  * Halaman Utama (Public View - /)
  */
-router.get("/", (req, res) => {
+router.get("/", asyncHandler(async (req, res) => {
   const profile = StoreModel.getProfile();
   const categories = StoreModel.getCategories();
-  const products = StoreModel.getProducts();
-  const posts = StoreModel.getPosts().slice(0, 3); // Ambil 3 postingan terbaru
+  const products = await Product.find().sort({ createdAt: -1 });
+  const posts = await Post.find().sort({ createdAt: -1 }).limit(3);
 
   res.render("home", {
     title: `${profile.name} - Spesialis Mebel Kayu & Custom Furniture Lamongan`,
@@ -38,21 +44,28 @@ router.get("/", (req, res) => {
     formatRupiah,
     activePage: "home",
   });
-});
+}));
 
 /**
  * Halaman Katalog & Pencarian (/katalog)
  */
-router.get("/katalog", (req, res) => {
+router.get("/katalog", asyncHandler(async (req, res) => {
   const profile = StoreModel.getProfile();
   const categories = StoreModel.getCategories();
   const search = req.query.q || "";
   const selectedCategory = req.query.kategori || "all";
 
-  const products = StoreModel.getProducts({
-    search,
-    category: selectedCategory,
-  });
+  let products = await Product.find().sort({ createdAt: -1 });
+  if (selectedCategory && selectedCategory !== "all") {
+    products = products.filter((product) => product.category === selectedCategory);
+  }
+  if (search.trim()) {
+    const keyword = search.trim().toLowerCase();
+    products = products.filter((product) =>
+      [product.name, product.description, product.specs, product.categoryName]
+        .some((value) => (value || "").toLowerCase().includes(keyword))
+    );
+  }
 
   res.render("katalog", {
     title: `Katalog Produk & Mebel - ${profile.name}`,
@@ -64,14 +77,14 @@ router.get("/katalog", (req, res) => {
     formatRupiah,
     activePage: "katalog",
   });
-});
+}));
 
 /**
  * Halaman Detail Produk (/produk/:id)
  */
-router.get("/produk/:id", (req, res) => {
+router.get("/produk/:id", asyncHandler(async (req, res) => {
   const profile = StoreModel.getProfile();
-  const product = StoreModel.getProductById(req.params.id);
+  const product = await Product.findById(req.params.id);
 
   if (!product) {
     return res.status(404).render("404", {
@@ -83,9 +96,9 @@ router.get("/produk/:id", (req, res) => {
   }
 
   // Cari produk terkait dari kategori yang sama
-  const relatedProducts = StoreModel.getProducts({ category: product.category })
-    .filter((p) => p.id !== product.id)
-    .slice(0, 4);
+  const relatedProducts = await Product.find({ category: product.category, _id: { $ne: product.id } })
+    .sort({ createdAt: -1 })
+    .limit(4);
 
   // Pesan otomatis WhatsApp rapi dan ramah
   const waMessage = `Halo ${profile.name}, saya tertarik dan ingin memesan produk:\n*${product.name}*\nHarga: ${formatRupiah(product.price)}\nSpesifikasi: ${product.specs || '-'}\n\nMohon info ketersediaan stok atau estimasi pengerjaan custom. Terima kasih!`;
@@ -100,7 +113,7 @@ router.get("/produk/:id", (req, res) => {
     formatRupiah,
     activePage: "katalog",
   });
-});
+}));
 
 /**
  * Halaman Khusus Cara Pesan (/cara-pesan)
@@ -123,9 +136,9 @@ router.get("/cara-pesan", (req, res) => {
 /**
  * Halaman Daftar Artikel / Postingan (/postingan)
  */
-router.get("/postingan", (req, res) => {
+router.get("/postingan", asyncHandler(async (req, res) => {
   const profile = StoreModel.getProfile();
-  const posts = StoreModel.getPosts();
+  const posts = await Post.find().sort({ createdAt: -1 });
 
   res.render("posts", {
     title: `Artikel, Tips Kayu & Portofolio - ${profile.name}`,
@@ -133,14 +146,15 @@ router.get("/postingan", (req, res) => {
     posts,
     activePage: "postingan",
   });
-});
+}));
 
 /**
  * Halaman Detail Artikel / Postingan (/postingan/:slug)
  */
-router.get("/postingan/:slug", (req, res) => {
+router.get("/postingan/:slug", asyncHandler(async (req, res) => {
   const profile = StoreModel.getProfile();
-  const post = StoreModel.getPostBySlug(req.params.slug) || StoreModel.getPostById(req.params.slug);
+  let post = await Post.findOne({ slug: req.params.slug });
+  if (!post) post = await Post.findById(req.params.slug);
 
   if (!post) {
     return res.status(404).render("404", {
@@ -151,9 +165,9 @@ router.get("/postingan/:slug", (req, res) => {
     });
   }
 
-  const otherPosts = StoreModel.getPosts()
-    .filter((p) => p.id !== post.id)
-    .slice(0, 3);
+  const otherPosts = await Post.find({ _id: { $ne: post.id } })
+    .sort({ createdAt: -1 })
+    .limit(3);
 
   res.render("post-detail", {
     title: `${post.title} - ${profile.name}`,
@@ -162,7 +176,7 @@ router.get("/postingan/:slug", (req, res) => {
     otherPosts,
     activePage: "postingan",
   });
-});
+}));
 
 module.exports = router;
 
